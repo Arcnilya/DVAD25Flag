@@ -55,8 +55,3 @@ def get_flag_class(class_id):
     if cls is None:
         raise KeyError
     return cls
-
-
-def load(app):
-    register_plugin_assets_directory(app, base_path="/plugins/flags/assets/")
-
