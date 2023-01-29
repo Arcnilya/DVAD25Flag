@@ -17,12 +17,60 @@ class BaseFlag(object):
     def compare(self, saved, provided):
         return True
 
+class CTFdStaticFlag(BaseFlag):
+    name = "static"
+    templates = {  # Nunjucks templates used for key editing & viewing
+        "create": "/plugins/flags/assets/static/create.html",
+        "update": "/plugins/flags/assets/static/edit.html",
+    }
+
+    @staticmethod
+    def compare(chal_key_obj, provided):
+        saved = chal_key_obj.content
+        data = chal_key_obj.data
+
+        if len(saved) != len(provided):
+            return False
+        result = 0
+
+        if data == "case_insensitive":
+            for x, y in zip(saved.lower(), provided.lower()):
+                result |= ord(x) ^ ord(y)
+        else:
+            for x, y in zip(saved, provided):
+                result |= ord(x) ^ ord(y)
+        return result == 0
+
+
+class CTFdRegexFlag(BaseFlag):
+    name = "regex"
+    templates = {  # Nunjucks templates used for key editing & viewing
+        "create": "/plugins/flags/assets/regex/create.html",
+        "update": "/plugins/flags/assets/regex/edit.html",
+    }
+
+    @staticmethod
+    def compare(chal_key_obj, provided):
+        saved = chal_key_obj.content
+        data = chal_key_obj.data
+
+        try:
+            if data == "case_insensitive":
+                res = re.match(saved, provided, re.IGNORECASE)
+            else:
+                res = re.match(saved, provided)
+        # TODO: this needs plugin improvements. See #1425.
+        except re.error as e:
+            raise FlagException("Regex parse error occured") from e
+
+        return res and res.group() == provided
+
 
 class CTFdDVAD25Flag(BaseFlag):
     name = "DVAD25"
     templates = {  
-        "create": "/plugins/DVAD25Flag/assets/DVAD25/create.html",
-        "update": "/plugins/DVAD25Flag/assets/DVAD25/edit.html",
+        "create": "/plugins/flags/assets/DVAD25/create.html",
+        "update": "/plugins/flags/assets/DVAD25/edit.html",
     }
 
     @staticmethod
@@ -47,7 +95,7 @@ class CTFdDVAD25Flag(BaseFlag):
         '''
 
 
-FLAG_CLASSES = {"DVAD25": CTFdDVAD25Flag}
+FLAG_CLASSES = {"static": CTFdStaticFlag, "regex": CTFdRegexFlag, "DVAD25": CTFdDVAD25Flag}
 
 
 def get_flag_class(class_id):
@@ -58,4 +106,4 @@ def get_flag_class(class_id):
 
 
 def load(app):
-    register_plugin_assets_directory(app, base_path="/plugins/DVAD25Flag/assets/")
+    register_plugin_assets_directory(app, base_path="/plugins/flags/assets/")
