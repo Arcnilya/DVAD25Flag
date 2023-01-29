@@ -21,15 +21,15 @@ class BaseFlag(object):
 class CTFdDVAD25Flag(BaseFlag):
     name = "DVAD25"
     templates = {  
-        "create": "/plugins/flags/assets/static/create.html",
-        "update": "/plugins/flags/assets/static/edit.html",
+        "create": "/plugins/CTFd-DVAD25-Flag/assets/DVAD25/create.html",
+        "update": "/plugins/CTFd-DVAD25-Flag/assets/DVAD25/edit.html",
     }
 
     @staticmethod
     def compare(chal_key_obj, provided):
         saved = chal_key_obj.content
-        data = chal_key_obj.data
-        #world = chal_key_obj.data
+        #data = chal_key_obj.data
+        world = chal_key_obj.world
 
         return True
         '''
@@ -55,3 +55,7 @@ def get_flag_class(class_id):
     if cls is None:
         raise KeyError
     return cls
+
+
+def load(app):
+    register_plugin_assets_directory(app, base_path="/plugins/CTFd-DVAD25-Flag/assets/")
