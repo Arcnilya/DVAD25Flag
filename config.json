@@ -1,4 +1,4 @@
 {
     "name": "CTFd DVAD25 Flag",
-    "route": "/admin/DVAD25"
+    "route": "/admin/plugins/CTFd-DVAD25-Flag"
 }
