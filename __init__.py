@@ -21,8 +21,8 @@ class BaseFlag(object):
 class CTFdDVAD25Flag(BaseFlag):
     name = "DVAD25"
     templates = {  
-        "create": "/plugins/CTFd-DVAD25-Flag/assets/DVAD25/create.html",
-        "update": "/plugins/CTFd-DVAD25-Flag/assets/DVAD25/edit.html",
+        "create": "/plugins/DVAD25Flag/assets/DVAD25/create.html",
+        "update": "/plugins/DVAD25Flag/assets/DVAD25/edit.html",
     }
 
     @staticmethod
@@ -58,4 +58,4 @@ def get_flag_class(class_id):
 
 
 def load(app):
-    register_plugin_assets_directory(app, base_path="/plugins/CTFd-DVAD25-Flag/assets/")
+    register_plugin_assets_directory(app, base_path="/plugins/DVAD25Flag/assets/")
