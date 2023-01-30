@@ -1,6 +1,6 @@
 from CTFd.plugins import register_plugin_assets_directory
 from CTFd.plugins.flags import FlagException, BaseFlag, get_flag_class, FLAG_CLASSES
-from CTFd.models import db, Solves, WrongKeys, Keys, Challenges, Files, Tags, Teams, Hints
+from CTFd.models import db
 
 class CTFdDVAD25Flag(BaseFlag):
     name = "DVAD25"
