@@ -25,7 +25,7 @@ class DVAD25BaseFlag(BaseFlag):
         flag_info = f"{saved}{world}{machine}{today}{secret}"
         print("flag_info:", flag_info)
         flag_hash = sha1(flag_info.encode())
-        calculated_flag = "flag{" + saved + flag_hash + "}"
+        calculated_flag = "flag{" + saved + flag_hash.hexdigest() + "}"
         print("calc_flag:", calculated_flag)
 
         if provided == calculated_flag:
