@@ -4,21 +4,28 @@
 </label>
 
 {% block js %}
-    <script>
-        alert("hello");
-    </script>
+<script type='text/javascript'>
+   $(document).ready(function() {
+    $('select').each(function() {
+        $(this).change(function() {
+            var myele = '';
+            $.each($('select option:selected'), function() {
+                myele += $(this).val();
+            });
+            $('#target').val(myele);
+            console.log($('#target').val());
+        });
+    });
+   }); 
+</script>
 {% endblock %}
 
 <div class="form-group">
 	<input type="text" class="form-control" name="content" value="{{ content }}">
 </div>
+<input type="hidden" id="target" name="data" value="temp">
 <div class="form-group">
-	<select hidden class="form-control custom-select col-md-6" name="data" value="barfoo">
-		<option value="foo">foo1</option>
-	</select>
-</div>
-<div class="form-group">
-	<select class="form-control custom-select col-md-6" id="world">
+	<select class="form-control custom-select col-md-6" id="world" onchange="myfunction()">
 		<option value="matrix1">matrix1</option>
 		<option value="matrix2">matrix2</option>
 		<option value="matrix3">matrix3</option>
