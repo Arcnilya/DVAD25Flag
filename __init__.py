@@ -15,8 +15,6 @@ class DVAD25BaseFlag(BaseFlag):
         data = chal_key_obj.data
         print("flag content:", saved)
         print("flag data:", data)
-        #world = chal_key_obj.world
-        #machine = chal_key_obj.machine
 
         if provided == saved:
             return True
@@ -25,6 +23,5 @@ class DVAD25BaseFlag(BaseFlag):
 
 
 def load(app):
-    #app.db.create_all()
     FLAG_CLASSES['DVAD25'] = DVAD25BaseFlag
     register_plugin_assets_directory(app, base_path="/plugins/DVAD25Flags/assets/")
