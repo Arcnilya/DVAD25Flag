@@ -6,16 +6,12 @@
 {% block js %}
 <script type='text/javascript'>
    $(document).ready(function() {
-    $('select').each(function() {
-        $(this).change(function() {
-            var myele = '';
-            $.each($('select option:selected'), function() {
-                myele += $(this).val();
-            });
-            $('#target').val(myele);
-            console.log($('#target').val());
+        $('#world').change(function(){
+            $('#target').val($('#world').val()+"+"+$('#machine').val());
         });
-    });
+        $('#machine').change(function(){
+            $('#target').val($('#world').val()+"+"+$('#machine').val());
+        });
    }); 
 </script>
 {% endblock %}
@@ -23,9 +19,8 @@
 <div class="form-group">
 	<input type="text" class="form-control" name="content" value="{{ content }}">
 </div>
-<input type="hidden" id="target" name="data" value="temp">
 <div class="form-group">
-	<select class="form-control custom-select col-md-6" id="world" onchange="myfunction()">
+	<select class="form-control custom-select col-md-6" id="world">
 		<option value="matrix1">matrix1</option>
 		<option value="matrix2">matrix2</option>
 		<option value="matrix3">matrix3</option>
@@ -43,3 +38,4 @@
 	</select>
 </div>
 <input type="hidden" name="type" value="DVAD25">
+<input type="hidden" id="target" name="data" value="temp">
