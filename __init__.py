@@ -76,10 +76,13 @@ class CTFdDVAD25Flag(BaseFlag):
     @staticmethod
     def compare(chal_key_obj, provided):
         saved = chal_key_obj.content
-        #data = chal_key_obj.data
-        #world = chal_key_obj.world
+        world = chal_key_obj.world
+        machine = chal_key_obj.machine
 
-        return True
+        if provided == "flag{"+f"{saved}{world}{machine}"+"}":
+            return True
+        else
+            return False
 
 
 FLAG_CLASSES = {"static": CTFdStaticFlag, "regex": CTFdRegexFlag, "DVAD25": CTFdDVAD25Flag}
