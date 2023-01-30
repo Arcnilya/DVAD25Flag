@@ -81,7 +81,7 @@ class CTFdDVAD25Flag(BaseFlag):
 
         if provided == "flag{"+f"{saved}{world}{machine}"+"}":
             return True
-        else
+        else:
             return False
 
 
