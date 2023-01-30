@@ -12,11 +12,14 @@ class DVAD25BaseFlag(BaseFlag):
     @staticmethod
     def compare(chal_key_obj, provided):
         saved = chal_key_obj.content
-        data = chal_key_obj.data
         print("flag content:", saved)
+        data = chal_key_obj.data
         print("flag data:", data)
+        world, machine = data.split('+')
+        tmp = f"{saved}{world}{machine}"
+        print("concat:", tmp)
 
-        if provided == saved:
+        if provided == tmp:
             return True
         else:
             return False
