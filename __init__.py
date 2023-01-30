@@ -13,6 +13,7 @@ class DVAD25BaseFlag(BaseFlag):
     def compare(chal_key_obj, provided):
         saved = chal_key_obj.content
         data = chal_key_obj.data
+        print("flag data:" data)
         #world = chal_key_obj.world
         #machine = chal_key_obj.machine
 

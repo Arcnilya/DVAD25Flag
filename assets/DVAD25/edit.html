@@ -23,18 +23,11 @@
 		<option value="cloud-hopper">cloud-hopper</option>
 	</select>
 </div>
-<input type="hidden" name="data" value="{{ document.getElementById('world').serialize() + document.getElementById('machine').serialize() }}">
+<input type="hidden" name="data" value="{{ document.getElementById('world').value + document.getElementById('machine').value }}">
 <input type="hidden" name="type" value="DVAD25">
 <input type="hidden" name="id" value="{{ id }}">
 <hr>
 <div class="form-group">
-	<button class="btn btn-success float-right" id="mybutton">Update</button>
+	<button class="btn btn-success float-right">Update</button>
 </div>
-<script>
-    function output() {
-        console.log("test:" + document.getElementById('world').serialize() + document.getElementById('machine').serialize());
-    }
-    var foo = document.getElementById("mybutton");
-    foo.addEventListener("click", output, true);
-</script>
 
