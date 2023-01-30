@@ -5,8 +5,8 @@ from CTFd.models import db, Flags
 class DVAD25BaseFlag(BaseFlag):
     name = "DVAD25"
     templates = {  
-        "create": "/plugins/DVAD25Flags/assets/DVAD25/create.html",
-        "update": "/plugins/DVAD25Flags/assets/DVAD25/edit.html",
+        "create": "/plugins/DVAD25Flag/assets/DVAD25/create.html",
+        "update": "/plugins/DVAD25Flag/assets/DVAD25/edit.html",
     }
 
     @staticmethod
@@ -24,4 +24,4 @@ class DVAD25BaseFlag(BaseFlag):
 
 def load(app):
     FLAG_CLASSES['DVAD25'] = DVAD25BaseFlag
-    register_plugin_assets_directory(app, base_path="/plugins/DVAD25Flags/assets/")
+    register_plugin_assets_directory(app, base_path="/plugins/DVAD25Flag/assets/")
