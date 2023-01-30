@@ -23,11 +23,26 @@
 		<option value="cloud-hopper">cloud-hopper</option>
 	</select>
 </div>
-<input type="hidden" name="data" value="{{ document.getElementById('world').value + document.getElementById('machine').value }}">
+<input type="hidden" name="data2" value="{{ document.getElementById('world').value + document.getElementById('machine').value }}">
+
+<input type="hidden" id='myhidden' name="data" value=''>
 <input type="hidden" name="type" value="DVAD25">
 <input type="hidden" name="id" value="{{ id }}">
 <hr>
+<script type='text/javascript'>
+    $(document).ready(function() {
+        $('select').each(function() {
+            $(this).change(function() {
+                var myele = '';
+                $.each($('select option:selected'), function() {
+                    myele += $(this).val();
+                });
+                $('#myhidden').val(myele);
+                console.log($('#myhidden').val());
+            });
+        });
+    });
+</script>
 <div class="form-group">
 	<button class="btn btn-success float-right">Update</button>
 </div>
-
