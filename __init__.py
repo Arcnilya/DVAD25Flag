@@ -1,6 +1,8 @@
 from CTFd.plugins import register_plugin_assets_directory
 from CTFd.plugins.flags import BaseFlag, get_flag_class, FLAG_CLASSES
 from CTFd.models import db, Flags
+from datetime import datetime
+from hashlib import sha1
 
 class DVAD25BaseFlag(BaseFlag):
     name = "DVAD25"
@@ -11,15 +13,22 @@ class DVAD25BaseFlag(BaseFlag):
 
     @staticmethod
     def compare(chal_key_obj, provided):
+        dt = datetime.now()
+        today = dt.strftime('%d%m%Y')
         saved = chal_key_obj.content
-        print("flag content:", saved)
+        #print("flag content:", saved)
         data = chal_key_obj.data
-        print("flag data:", data)
+        #print("flag data:", data)
         world, machine = data.split('+')
-        tmp = f"{saved}{world}{machine}"
-        print("concat:", tmp)
+        secret = "1337"
 
-        if provided == tmp:
+        flag_info = f"{saved}{world}{machine}{today}{secret}"
+        print("flag_info:", flag_info)
+        flag_hash = sha1(flag_info.encode())
+        calculated_flag = "flag{"+saved+flag_hash"}"
+        print("calc_flag:", calculated_flag)
+
+        if provided == calculated_flag:
             return True
         else:
             return False
